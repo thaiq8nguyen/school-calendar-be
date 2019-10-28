@@ -7,7 +7,6 @@ exports.up = function(knex) {
       table.string('email').notNullable().unique();
       table.string('password').notNullable();
       table.boolean('isAdmin').notNullable().defaultTo(false);
-      table.integer('userId').unique();
       
   })
 };
