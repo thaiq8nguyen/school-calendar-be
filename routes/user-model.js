@@ -9,15 +9,15 @@ module.exports ={
     remove
 }
 function find() {
-    return db('users')
+    return db('usersLogin')
     .select('id', 'username', 'password');
 }
 function findBy(filter) {
-    return db('users')
+    return db('usersLogin')
     .where(filter);
 }
 function add(user) {
-    return db('users')
+    return db('usersLogin')
     .insert(user, 'id')
     .then(ids => {
         const [id] = ids;
@@ -25,13 +25,13 @@ function add(user) {
     })
 }
 function findById(id) {
-    return db('users')
+    return db('usersLogin')
     .where({ id })
     .first();
 }
 
 function update(changes, id) {
-    return db('users')
+    return db('usersLogin')
     .where('id', id)
     .update(changes)
     .then(count => {
