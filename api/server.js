@@ -11,10 +11,11 @@ server.use(express.json());
 
 //setting up routes
 const userRouter = require('../routes/user-router');
-const authRouter = require('..')
+const authRouter = require('../auth/auth-router')
 
 //routes
 server.use('/api/users', userRouter);
+server.use('/api/auth', authRouter);
 
 //testing server
 server.get('/', (req, res) => {

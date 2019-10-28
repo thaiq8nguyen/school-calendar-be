@@ -1,11 +1,10 @@
   
 const router = require('express').Router();
 
-// add authenticate to function to use middleware
 const authenticate = require('../auth/authenticate-middleware.js')
 const Users = require('./user-model.js');
 
-router.get('/', (req, res) => {
+router.get('/', authenticate, (req, res) => {
     Users.find()
       .then(users => {
         res.json({ users });
