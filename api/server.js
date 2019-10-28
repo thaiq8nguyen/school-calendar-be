@@ -11,6 +11,7 @@ server.use(express.json());
 
 //setting up routes
 const userRouter = require('../routes/user-router');
+const authRouter = require('..')
 
 //routes
 server.use('/api/users', userRouter);
