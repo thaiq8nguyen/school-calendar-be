@@ -44,8 +44,8 @@ exports.up = function(knex) {
   }) 
   .createTable("events" , table => {
     table.increments();
-    table.increments('eventName')
-    table.increments('eventInfo')
+    table.string('eventName')
+    table.string('eventInfo')
   })
   .createTable('calendarEvents' , table => {
     table.increments()
