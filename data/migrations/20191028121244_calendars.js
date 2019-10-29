@@ -67,9 +67,10 @@ exports.up = function(knex) {
 }
 exports.down = function(knex) {
   return knex.schema
-  .dropTableIfExists("usersLogin")
-  .dropTableIfExists("userCalendars") 
-  .dropTableIfExists("calendars") 
-  .dropTableIfExists("CalendarEvent") 
-  .dropTableIfExists("Events") 
+    .dropTableIfExists("calendarEvents")
+    .dropTableIfExists("events") 
+    .dropTableIfExists("adminCalendars") 
+    .dropTableIfExists("userCalendars")
+    .dropTableIfExists("calendars") 
+    .dropTableIfExists("users")
 };
