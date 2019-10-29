@@ -12,10 +12,12 @@ server.use(express.json());
 //setting up routes
 const userRouter = require('../routes/user-router');
 const authRouter = require('../auth/auth-router')
+const eventRouter = require('../routes/event-router')
 
 //routes
 server.use('/api/users', userRouter);
 server.use('/api/auth', authRouter);
+server.use('/api/event', eventRouter);
 
 //testing server
 server.get('/', (req, res) => {
