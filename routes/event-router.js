@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         })
 })
 //adding an event to array
-router.post('/add-event', (req, res) => {
+router.post('/', (req, res) => {
     let events = req.body
     Events.addEvent( events )
     .then(saved => res.json({ saved }))
