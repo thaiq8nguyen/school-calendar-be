@@ -11,7 +11,7 @@ router.get('/' , (req,res) => {
     })
 }) 
 
-router.post('/calendar' , (req,res) => {
+router.post('/'  , (req,res) => {
     var cal = req.body
     Calendar.add(cal)
     .then(response => res.json({response}))
@@ -19,9 +19,9 @@ router.post('/calendar' , (req,res) => {
         res.status(500).json({message : error})
     })
 }) 
-router.delete('/:calId' , (req,res) =>{ 
-    var calId= req.params.calId;
-    Calendar.remove(calId)
+router.delete('/:id' , (req,res) =>{ 
+    var id = req.params.id;
+    Calendar.remove(id)
     .then(deleted => {
         res.json({deleted})
     }) 
@@ -29,14 +29,14 @@ router.delete('/:calId' , (req,res) =>{
         res.status(500).json({message : error})
     })
 }) 
-router.put('/:calId' , (req,res) => {
+router.put('/:id' , (req,res) => {
     var updated = req.body ; 
-    var calId = req.params.calId;
+    var id = req.params.id;
 
-    Calendar.update(calId, updated)
+    Calendar.update(id, updated)
     .then(response => {
         if(response > 0){
-            Calendar.getById(calId)
+            Calendar.getById(id)
             .then(result => {
                 res.status(200).json({result})
             })
