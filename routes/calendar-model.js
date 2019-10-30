@@ -9,24 +9,24 @@ update
 } 
 
 function get(){
-    return db('calender')
-    .select('calenderName')
+    return db('calendars')
+    .select('calendarName', 'calendarDescription')
 } 
 function getById(calId){
-  return db('calender')
+  return db('calendars')
    .where('calId' , calId);
 } 
 function add(calender){
-  return db('calender')
-  .insert(calender , 'calId')
+  return db('calendars')
+  .insert(calender , 'id')
 } 
 function remove(calId){
-  return db('calId') 
+  return db('calendars') 
   .where({calId})
   .del();
 } 
 function update(calId , updated){
-    return db('calender')
+    return db('calendars')
     .where({calId})
     .update(updated)
 }
