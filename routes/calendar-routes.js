@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Calendar = require('./calendar-model');
+const Calendar = require('./calendar-model')
 
 router.get('/' , (req,res) => {
     Calendar.get()
@@ -11,12 +11,13 @@ router.get('/' , (req,res) => {
     })
 }) 
 
-router.post('/'  , (req,res) => {
-    var cal = req.body
-    Calendar.add(cal)
-    .then(response => res.json({response}))
+
+router.post('/' , (req,res) => {
+    let cal = req.body
+    Calendar.add( cal )
+    .then(response => res.json({ response }))
     .catch(error => {
-        res.status(500).json({message : error})
+        res.status(500).json({message:'could not post', error:error})
     })
 }) 
 router.delete('/:id' , (req,res) =>{ 
