@@ -10,8 +10,8 @@ router.get('/:cal_id/events/', async (req, res) => {
 
         res.status(200).json(response);
     } catch (err) {
-        console.log('event get error', err)
-        res.status(400).json({ message: 'error fetching events'})
+        console.log('event GET error', err);
+        res.status(400).json({ message: 'error fetching events', error: `${err}`});
     }
 })
 
@@ -21,8 +21,9 @@ router.get('/:cal_id/events/:id', async (req, res) => {
         const response = await Events.getById(cal_id, id);
 
         res.status(200).json(response);
-    } catch {
-        res.status(400).json({ message: 'error fetching event'})
+    } catch (err) {
+        console.log('event GET BY ID error', err);
+        res.status(400).json({ message: 'error fetching event', error: `${err}`});
     }
 })
 
@@ -33,8 +34,9 @@ router.post('/:cal_id/events/', async (req, res) => {
         const response = await Events.add(cal_id, event);
 
         res.status(200).json(response);
-    } catch {
-        res.status(400).json({ message: 'error adding event'})
+    } catch (err) {
+        console.log('event POST error', err);
+        res.status(400).json({ message: 'error adding event', error: `${err}`});
     }
 })
 
@@ -44,8 +46,9 @@ router.delete('/:cal_id/events/:id', async (req, res) => {
         const response = await Events.remove(cal_id, id);
 
         res.status(200).json(response);
-    } catch {
-        res.status(400).json({ message: 'error deleting event'})
+    } catch (err) {
+        console.log('event DELETE error', err);
+        res.status(400).json({ message: 'error deleting event', error: `${err}`});
     }
 })
 
@@ -56,8 +59,9 @@ router.put('/:cal_id/events/:id', async (req, res) => {
         const response = await Events.update(cal_id, id, event);
 
         res.status(200).json(response);
-    } catch {
-        res.status(400).json({ message: 'error updating event'})
+    } catch (err) {
+        console.log('event PUT error', err);
+        res.status(400).json({ message: 'error updating event', error: `${err}`});
     }
 })
 module.exports = router;
