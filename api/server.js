@@ -20,10 +20,10 @@ const subscriberRouter = require('../routes/calSubs-router');
 //routes
 server.use('/users', userRouter);
 // server.use('/auth', authRouter);
-server.use('/api/calendar/', calendarRouter);
-server.use('/api/calendar/', eventRouter);
-server.use('/api/calendar/', adminRouter);
-server.use('/api/calendar/', subscriberRouter);
+server.use('/api/calendars/', calendarRouter);
+server.use('/api/calendars/', eventRouter);
+server.use('/api/calendars/', adminRouter);
+server.use('/api/calendars/', subscriberRouter);
 
 //testing server
 server.get('/', (req, res) => {
