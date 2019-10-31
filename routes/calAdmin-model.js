@@ -8,44 +8,44 @@ module.exports = {
     update,
 }
 
-function get(cal_id) {
+function get(calendarId) {
     return (
         db('adminCalendars')
-            .where({cal_id})
+            .where({calendarId})
             .join('users', 'adminId', 'users.id')
             .select('name', 'username', 'email', 'phone')
     )
 }
 
-function getById(cal_id, admin_id) {
+function getById(calendarId, adminId) {
     return (
         db('adminCalendars')
-            .where({cal_id, admin_id})
+            .where({calendarId, adminId})
             .join('users', 'adminId', 'users.id')
             .select('name', 'username', 'email', 'phone')
     )
 }
 
-function add(cal_id, admin) {
+function add(calendarId, admin) {
     return (
         db('adminCalendars')
-            .where({cal_id})
+            .where({calendarId})
             .insert(admin)
     )
 }
 
-function remove(cal_id, admin_id) {
+function remove(calendarId, adminId) {
     return (
         db('adminCalendars')
-            .where({cal_id, admin_id})
+            .where({calendarId, adminId})
             .del()
     )
 }
 
-function update(cal_id, admin_id, changes) {
+function update(calendarId, adminId, changes) {
     return (
         db('adminCalendars')
-            .where({cal_id, admin_id})
+            .where({calendarId, adminId})
             .update(changes)
     )
 }

@@ -8,45 +8,44 @@ module.exports = {
     update,
 }
 
-function get(id) {
+function get(calendarId) {
     return (
         db('calendarEvents')
-            .where({id})
-            .select('calendarId', 'eventsId')
-            // .join('events', 'eventsId', 'events.id')
-            // .select('eventName', 'eventInfo')
-    )
-}
-
-function getById(id, event_id) {
-    return (
-        db('calendarEvents')
-            .where({id, event_id})
+            .where({calendarId})
             .join('events', 'eventsId', 'events.id')
             .select('eventName', 'eventInfo')
     )
 }
 
-function add(id, event) {
+function getById(calendarId, eventsId) {
     return (
         db('calendarEvents')
-            .where({id})
+            .where({calendarId, eventsId})
+            .join('events', 'eventsId', 'events.id')
+            .select('eventName', 'eventInfo')
+    )
+}
+
+function add(calendarId, event) {
+    return (
+        db('calendarEvents')
+            .where({calendarId})
             .insert(event)
     )
 }
 
-function remove(cal_id, event_id) {
+function remove(cal_id, eventsId) {
     return (
         db('calendarEvents')
-            .where({cal_id, event_id})
+            .where({cal_id, eventsId})
             .del()
     )
 }
 
-function update(cal_id, event_id, changes) {
+function update(calendarId, eventsId, changes) {
     return (
         db('calendarEvents')
-            .where({cal_id, event_id})
+            .where({calendarId, eventsId})
             .update(changes)
     )
 }
