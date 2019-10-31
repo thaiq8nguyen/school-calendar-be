@@ -4,7 +4,7 @@ const router = require('express').Router();
 const Events = require('./event-model');
 
 //getting a list of events
-router.get('/', (req, res) => {
+router.get('/:cal_id/events/', (req, res) => {
     Events.find()
         .then(event => res.json({ event }))
         .catch(err => {
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         })
 })
 //adding an event to array
-router.post('/', (req, res) => {
+router.post('/:cal_id/events/', (req, res) => {
     let events = req.body
     Events.addEvent( events )
     .then(saved => res.json({ saved }))
@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
     })
 })
 //delete an event
-router.delete('/:id', (req, res) => {
+router.delete('/:cal_id/events/:id', (req, res) => {
     Events.removeEvent(req.params.id)
     .then(removed => {
         if(removed > 0) {
@@ -38,7 +38,7 @@ router.delete('/:id', (req, res) => {
     })
 })
 //update event
-router.put('/:id', (req, res) => {
+router.put('/:cal_id/events/:id', (req, res) => {
     const changes = req.body;
     const id = req.params.id;
 
