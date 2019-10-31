@@ -10,8 +10,6 @@ router.get('/' , (req,res) => {
         res.status(500).json({message : 'Could not get Calendar'})
     })
 }) 
-
-
 router.post('/' , (req,res) => {
     let cal = req.body
     Calendar.add( cal )
