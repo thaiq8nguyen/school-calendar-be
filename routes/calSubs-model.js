@@ -1,14 +1,14 @@
 const db = require('../data/db-config.js');
 
 module.exports = {
-    find,
-    findByUserId,
-    addUser,
-    removeUser, 
-    updateUser,
+    get,
+    getById,
+    add,
+    remove, 
+    update,
 }
 
-function find(cal_id) {
+function get(cal_id) {
     return (
         db('userCalendars')
             .where(cal_id)
@@ -17,7 +17,7 @@ function find(cal_id) {
     )
 }
 
-function findByUserId(cal_id, user_id) {
+function getById(cal_id, user_id) {
     return (
         db('userCalendars')
             .where({cal_id, user_id})
@@ -26,7 +26,7 @@ function findByUserId(cal_id, user_id) {
     )
 }
 
-function addUser(cal_id, user) {
+function add(cal_id, user) {
     return (
         db('userCalendars')
             .where(cal_id)
@@ -34,7 +34,7 @@ function addUser(cal_id, user) {
     )
 }
 
-function removeUser(cal_id, user_id) {
+function remove(cal_id, user_id) {
     return (
         db('userCalendars')
             .where({cal_id, user_id})
@@ -42,7 +42,7 @@ function removeUser(cal_id, user_id) {
     )
 }
 
-function updateUser(cal_id, user_id, changes) {
+function update(cal_id, user_id, changes) {
     return (
         db('userCalendars')
             .where({cal_id, user_id})

@@ -8,7 +8,7 @@ router.get('/', authenticate, (req, res) => {
   const requestOptions = {
     headers: { accept: 'application/json' }
   };
-  Users.find()
+  Users.get()
     .then(users => {
       res.json({ users });
     })
