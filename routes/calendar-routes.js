@@ -10,6 +10,16 @@ router.get('/' , (req,res) => {
         res.status(500).json({message : 'Could not get Calendar'})
     })
 }) 
+router.get('/:id' , (req,res) => {
+    var id = req.params.id;
+    Calendar.getById(id)
+    .then(cal => {
+        res.status(200).json({cal})
+    })
+    .catch(error => {
+        res.status(500).json({message : 'Could not get Calendar'})
+    })
+}) 
 router.post('/' , (req,res) => {
     let cal = req.body
     Calendar.add( cal )
