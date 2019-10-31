@@ -11,8 +11,8 @@ module.exports = {
 function get(cal_id) {
     return (
         db('calendarEvents')
-            .where(cal_id)
-            .select('calendarId', 'eventsId')
+            .where({cal_id})
+            // .select('calendarId', 'eventsId')
             // .join('events', 'eventsId', 'events.id')
             // .select('eventName', 'eventInfo')
     )
@@ -30,7 +30,7 @@ function getById(cal_id, event_id) {
 function add(cal_id, event) {
     return (
         db('calendarEvents')
-            .where(cal_id)
+            .where({cal_id})
             .insert(event)
     )
 }
