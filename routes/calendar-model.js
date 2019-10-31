@@ -12,21 +12,21 @@ function get(){
     return db('calendars')
     .select('calendarName', 'calendarDescription')
 } 
-function getById(calId){
-  return db('calendars')
-   .where('calId' , calId);
-} 
+function getById(id){
+      return db('calendars')
+       .where({id});
+    } 
 function add(calender){
   return db('calendars')
   .insert(calender , 'id')
 } 
-function remove(calId){
+function remove(id){
   return db('calendars') 
-  .where({calId})
+  .where({id})
   .del();
 } 
-function update(calId , updated){
+function update(id , updated){
     return db('calendars')
-    .where({calId})
+    .where({id})
     .update(updated)
 }

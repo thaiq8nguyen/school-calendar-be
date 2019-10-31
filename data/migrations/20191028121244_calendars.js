@@ -7,8 +7,8 @@ exports.up = function(knex) {
       table.string('username', 255).notNullable().unique();
       table.string('email').notNullable().unique();
       table.string('password').notNullable();
+      table.integer('phone');
       table.boolean('isAdmin').notNullable().defaultTo(false);
-      
   }) 
   .createTable("calendars" , table => {
      table.increments();
@@ -24,7 +24,7 @@ exports.up = function(knex) {
       .inTable('users')
       .onDelete('CASCADE')
       .onUpdate('CASCADE');
-   table
+    table
       .integer('calenderId')
       .unsigned()
       .references('id')
