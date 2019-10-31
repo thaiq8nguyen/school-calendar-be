@@ -50,7 +50,7 @@ exports.up = function(knex) {
   .createTable('calendarEvents' , table => {
     table.increments()
     table
-      .integer('calenderId')
+      .integer('calendarId')
       .unsigned()
       .references('id')
       .inTable('calendars')
