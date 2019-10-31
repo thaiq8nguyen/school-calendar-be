@@ -10,12 +10,12 @@ server.use(cors());
 server.use(express.json());
 
 //setting up routes
-const userRouter = require('../routes/user-router');
+const userRouter = require('../routes/user-routes');
 // const authRouter = require('../auth/auth-router');
 const calendarRouter = require('../routes/calendar-routes');
-const eventRouter = require('../routes/event-router');
+const eventRouter = require('../routes/event-routes');
 const adminRouter = require('../routes/calAdmin-routes');
-const subscriberRouter = require('../routes/calSubs-router');
+const subscriberRouter = require('../routes/calSubs-routes');
 
 //routes
 server.use('/users', userRouter);

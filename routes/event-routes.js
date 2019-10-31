@@ -9,7 +9,8 @@ router.get('/:cal_id/events/', async (req, res) => {
         const response = await Events.get(cal_id);
 
         res.status(200).json(response);
-    } catch {
+    } catch (err) {
+        console.log('event get error', err)
         res.status(400).json({ message: 'error fetching events'})
     }
 })
