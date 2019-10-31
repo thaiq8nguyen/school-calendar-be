@@ -13,7 +13,7 @@ function find(cal_id) {
         db('adminCalendars')
             .where(cal_id)
             .join('users', 'adminId', 'users.id')
-            .select('name', 'username', 'email')
+            .select('name', 'username', 'email', 'phone')
     )
 }
 
@@ -22,7 +22,7 @@ function findByAdminId(cal_id, admin_id) {
         db('adminCalendars')
             .where({cal_id, admin_id})
             .join('users', 'adminId', 'users.id')
-            .select('name', 'username', 'email')
+            .select('name', 'username', 'email', 'phone')
     )
 }
 
