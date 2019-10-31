@@ -17,6 +17,7 @@ router.get('/:id' , (req,res) => {
         res.status(200).json({cal})
     })
     .catch(error => {
+        console.log('get cal by id error', error);
         res.status(500).json({message : 'Could not get Calendar'})
     })
 }) 

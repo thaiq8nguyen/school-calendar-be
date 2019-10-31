@@ -12,8 +12,9 @@ function get(cal_id) {
     return (
         db('calendarEvents')
             .where(cal_id)
-            .join('events', 'eventsId', 'events.id')
-            .select('eventName', 'eventInfo')
+            .select('calendarId', 'eventsId')
+            // .join('events', 'eventsId', 'events.id')
+            // .select('eventName', 'eventInfo')
     )
 }
 

@@ -12,10 +12,10 @@ function get(){
     return db('calendars')
     .select('calendarName', 'calendarDescription')
 } 
-function getById(calId){
-  return db('calendars')
-   .where('calId' , calId);
-} 
+function getById(id){
+      return db('calendars')
+       .where({id});
+    } 
 function add(calender){
   return db('calendars')
   .insert(calender , 'id')
