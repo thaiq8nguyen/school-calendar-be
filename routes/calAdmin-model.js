@@ -10,7 +10,7 @@ module.exports = {
 
 function find(cal_id) {
     return (
-        db('calendaradmin')
+        db('adminCalendars')
             .where(cal_id)
             .join('users', 'adminId', 'users.id')
             .select('name', 'username', 'email')
@@ -19,7 +19,7 @@ function find(cal_id) {
 
 function findByAdminId(cal_id, admin_id) {
     return (
-        db('calendaradmin')
+        db('adminCalendars')
             .where({cal_id, admin_id})
             .join('users', 'adminId', 'users.id')
             .select('name', 'username', 'email')
@@ -28,7 +28,7 @@ function findByAdminId(cal_id, admin_id) {
 
 function addAdmin(cal_id, admin) {
     return (
-        db('calendaradmin')
+        db('adminCalendars')
             .where(cal_id)
             .insert(admin)
     )
@@ -36,7 +36,7 @@ function addAdmin(cal_id, admin) {
 
 function removeAdmin(cal_id, admin_id) {
     return (
-        db('calendaradmin')
+        db('adminCalendars')
             .where({cal_id, admin_id})
             .del()
     )
@@ -44,7 +44,7 @@ function removeAdmin(cal_id, admin_id) {
 
 function updateAdmin(cal_id, admin_id, changes) {
     return (
-        db('calendaradmin')
+        db('adminCalendars')
             .where({cal_id, admin_id})
             .update(changes)
     )
