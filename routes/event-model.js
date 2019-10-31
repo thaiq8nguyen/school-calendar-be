@@ -2,37 +2,50 @@ const db = require('../data/db-config.js');
 
 module.exports = {
     find,
-    findById,
+    findByEventId,
     addEvent,
     removeEvent, 
     updateEvent,
 }
 
-function find() {
-    return db('calendarEvents')
-    .select('calendarID', 'eventsID')
+function find(cal_id) {
+    return (
+        db('calendarEvents')
+            .where(cal_id)
+            .join('events', 'eventsId', 'events.id')
+            .select('eventName', 'eventInfo')
+    )
 }
 
-function findById(id) {
-    return db('events')
-    .where('id', id);
+function findByEventId(cal_id, event_id) {
+    return (
+        db('calendarEvents')
+            .where({cal_id, event_id})
+            .join('events', 'eventsId', 'events.id')
+            .select('eventName', 'eventInfo')
+    )
 }
 
-async function addEvent(events) {
-    return db('events')
-    .insert(events, 'id')
-
+function addEvent(cal_id, event) {
+    return (
+        db('calendarEvents')
+            .where(cal_id)
+            .insert(event)
+    )
 }
 
-async function removeEvent(id) {
-    return db('events')
-    .where({ id })
-    .del();
+function removeEvent(cal_id, event_id) {
+    return (
+        db('calendarEvents')
+            .where({cal_id, event_id})
+            .del()
+    )
 }
 
-function updateEvent(id , changes) {
-    return db('events')
-    .where({ id })
-    .update(changes)
-    
+function updateEvent(cal_id, event_id, changes) {
+    return (
+        db('calendarEvents')
+            .where({cal_id, event_id})
+            .update(changes)
+    )
 }
