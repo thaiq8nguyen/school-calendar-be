@@ -23,6 +23,7 @@ function getById(calendarId, eventsId) {
             .where({calendarId, eventsId})
             .join('events', 'eventsId', 'events.id')
             .select('eventName', 'eventInfo')
+            .first()
     )
 }
 
