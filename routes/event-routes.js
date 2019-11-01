@@ -7,7 +7,6 @@ router.get('/:cal_id/events/', async (req, res) => {
     try {
         const { cal_id } = req.params;
         const response = await Events.get(cal_id);
-
         res.status(200).json(response);
     } catch (err) {
         console.log('event GET error', err);

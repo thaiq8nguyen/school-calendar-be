@@ -23,6 +23,7 @@ function getById(calendarId, eventsId) {
             .where({calendarId, eventsId})
             .join('events', 'eventsId', 'events.id')
             .select('eventName', 'eventInfo')
+            .first()
     )
 }
 
@@ -31,13 +32,19 @@ function add(calendarId, event) {
         db('calendarEvents')
             .where({calendarId})
             .insert(event)
+        // db('events')
+        //     .insert(event)
+        //     // .then(res => {
+        //     //     db('calendarEvents')
+        //     //         .where({calendarId})
+        //     // })
     )
-}
+} //fix
 
-function remove(cal_id, eventsId) {
+function remove(calendarId, eventsId) {
     return (
         db('calendarEvents')
-            .where({cal_id, eventsId})
+            .where({calendarId, eventsId})
             .del()
     )
 }
@@ -48,4 +55,4 @@ function update(calendarId, eventsId, changes) {
             .where({calendarId, eventsId})
             .update(changes)
     )
-}
+} //fix
