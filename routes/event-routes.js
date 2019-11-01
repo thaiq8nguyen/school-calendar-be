@@ -7,25 +7,12 @@ router.get('/:cal_id/events/', async (req, res) => {
     try {
         const { cal_id } = req.params;
         const response = await Events.get(cal_id);
-        console.log('event GET response', response)
         res.status(200).json(response);
     } catch (err) {
         console.log('event GET error', err);
         res.status(400).json({ message: 'error fetching events', error: `${err}`});
     }
 })
-// router.get('/:cal_id/events/', (req, res) => {
-
-//     const { cal_id } = req.params;
-//     Events.get(cal_id)
-//         .then(item => {
-//             res.status(200).json(item)
-//         })
-//         .catch(err => {
-//             res.status(400).json(err)
-//             res.status(400).json({ message: 'error fetching events', error: `${err}`});
-//         })
-// })
 
 router.get('/:cal_id/events/:id', async (req, res) => {
     try {
