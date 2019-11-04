@@ -3,6 +3,8 @@ exports.up = function(knex) {
   return knex.schema 
   .createTable('usersLogin', table => {
       table.increments();
+      table.string("firstName");
+      table.string("lastName");
       table.string('username', 255).notNullable();
       table.string('email').notNullable().unique();
       table.string('password').notNullable();
@@ -20,12 +22,12 @@ exports.up = function(knex) {
      table.string("calendarName")
      table.integer("calendarId")
   })    
-  .createTable("Events" , table => {
-    table.increments();
-    table.integer("eventId")
-    table.increments('eventName')
-    table.increments('eventInfo')
-  })
+  // .createTable("Events" , table => {
+  //   table.increments();
+  //   table.integer("eventId")
+  //   table.increments('eventName')
+  //   table.increments('eventInfo')
+  // })
 
   .createTable('userCalendars', table => {
     table.increments()

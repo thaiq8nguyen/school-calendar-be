@@ -8,13 +8,15 @@ module.exports ={
     update,
     remove
 }
-function find() {
+function find(userId) {
     return db('usersLogin')
-    .select('id', 'username', 'password');
+    .where({username: userId}).orWhere({email: userId})
+    .first();
+    
 }
 function findBy(filter) {
     return db('usersLogin')
-    .where(filter);
+    .where(filter)
 }
 function add(user) {
     return db('usersLogin')
