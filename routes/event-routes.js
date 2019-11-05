@@ -31,6 +31,7 @@ router.post('/:cal_id/events/', async (req, res) => {
         const { cal_id } = req.params;
         const { event } = req.body;
         const response = await Events.add(cal_id, event);
+        console.log("res ",response)
 
         res.status(200).json(response);
     } catch (err) {

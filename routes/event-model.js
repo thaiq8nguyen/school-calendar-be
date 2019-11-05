@@ -29,15 +29,11 @@ function getById(calendarId, eventsId) {
 
 function add(calendarId, event) {
     return (
-        db('calendarEvents')
-            .where({calendarId})
-            .insert(event)
-        // db('events')
-        //     .insert(event)
-        //     // .then(res => {
-        //     //     db('calendarEvents')
-        //     //         .where({calendarId})
-        //     // })
+        db("events").insert(event).then(events => {
+            return db("calendarEvents").insert({calendarid: calendarId, eventsid: events[0]}).then(calendarEvent => {
+                return getById(calendarId, calendarEvent[0])
+            })
+        })
     )
 } //fix
 
@@ -50,9 +46,17 @@ function remove(calendarId, eventsId) {
 }
 
 function update(calendarId, eventsId, changes) {
-    return (
-        db('calendarEvents')
+        return(
+            db('calendarEvents')
             .where({calendarId, eventsId})
-            .update(changes)
-    )
+            .then(calendarEvent => {
+                const id = calendarEvent[0].id
+                return db("events").where({id}).update(changes).then(update => {
+                    return update
+                })
+            })
+        ) 
+            
+        
+    
 } //fix
