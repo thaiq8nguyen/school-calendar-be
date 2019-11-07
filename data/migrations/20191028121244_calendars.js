@@ -11,11 +11,14 @@ exports.up = function(knex) {
       table.string('password').notNullable();
       table.integer('phone');
       table.boolean('isAdmin').notNullable().defaultTo(false);
+      table.string("uuid").notNullable().unique().defaultTo(1);
+      table.timestamps(true, true);
   }) 
   .createTable("calendars" , table => {
      table.increments();
      table.string("calendarName")
      table.integer("calendarId")
+     table.timestamps(true, true);
   })    
   // .createTable("Events" , table => {
   //   table.increments();
@@ -40,6 +43,7 @@ exports.up = function(knex) {
       .inTable('calendars')
       .onDelete('CASCADE')
       .onUpdate('CASCADE');
+      table.timestamps(true, true);
   })
   .createTable('adminCalendars', table => {
     table.increments()
@@ -50,11 +54,13 @@ exports.up = function(knex) {
       .inTable('users')
       .onDelete('CASCADE')
       .onUpdate('CASCADE');
+      table.timestamps(true, true);
   }) 
   .createTable("events" , table => {
     table.increments();
     table.string('eventName', 255).notNullable()
     table.string('eventInfo', 255).notNullable()
+    table.timestamps(true, true);
   })
   .createTable('calendarEvents' , table => {
     table.increments()
@@ -72,6 +78,7 @@ exports.up = function(knex) {
       .inTable('events')
       .onDelete('CASCADE')
       .onUpdate('CASCADE');
+      table.timestamps(true, true);
   })
 }
 exports.down = function(knex) {
